@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Heavy data files & datasets
+*.zip
+*.csv
+!submission.csv
+/train
+/test
