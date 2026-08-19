@@ -1,29 +1,31 @@
-# ✈️ PlanesNet — Détection d'avions dans des images satellite
+# ✨ Digit Recognizer — MNIST (Handwritten Digit Recognition)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 Résumé
 ------
-PlanesNet est un projet de classification binaire qui détecte la présence d'avions dans de petites vignettes extraites d'images satellite. Le modèle est implémenté avec TensorFlow/Keras.  
-Résultat clé reproduit dans ce dépôt : **val_accuracy = 97.4%** sur le jeu de validation.
+Projet de reconnaissance de chiffres manuscrits basé sur le dataset MNIST. Le dépôt contient des notebooks (TensorFlow / Keras) montrant l'exploration des données, la construction et l'entraînement d'un CNN, ainsi que des cellules d'évaluation et d'inférence. Objectif : classifier les images 28×28 en 10 classes (0–9).
 
 Contenu du dépôt
 ----------------
-- data/ — jeux de données (ou scripts de téléchargement). Exemple attendu : `data/planesnet.json`  
-- src/ — code réutilisable (train.py, predict.py, utils.py)  
-- notebooks/ — notebooks d’exploration et démonstration (ex. analyses, visualisations)  
-- models/ — modèles / poids sauvegardés (ex. `models/best.h5`)  
-- results/ — courbes d'entraînement, matrices de confusion, exemples d'images  
-- README.md — ce fichier  
-- LICENSE — MIT
+- `notebooks/` — notebooks Jupyter (exploration, entraînement, évaluation, démonstration)  
+- `src/` — (optionnel) scripts réutilisables (train.py, predict.py, utils.py)  
+- `models/` — modèles sauvegardés (ex : `models/best_model.h5`)  
+- `results/` — courbes d'entraînement, matrices de confusion, exemples de prédictions  
+- `data/` — (optionnel) données locales / exemples (MNIST est téléchargé automatiquement via Keras)  
+- `README.md` — ce fichier  
+- `LICENSE` — MIT (si présent)
 
 Prérequis
 ---------
 - Python 3.8+ recommandé  
 - TensorFlow 2.x  
-- Bibliothèques usuelles : numpy, scikit-learn, matplotlib, pandas, tqdm  
-(versions exactes à figer dans `requirements.txt`)
+- Bibliothèques usuelles : numpy, matplotlib, scikit-learn, pandas, jupyter, tqdm  
+(versions exactes à préciser dans `requirements.txt`)
 
 Installation rapide
 ------------------
 1. Cloner le dépôt :
+```bash
+git clone https://github.com/ayounimohamedaziz/digit-recognizer-mnist.git
+cd digit-recognizer-mnist
