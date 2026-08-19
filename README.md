@@ -1,31 +1,42 @@
-# ✨ Digit Recognizer — MNIST (Handwritten Digit Recognition)
+# 🔢 Handwritten Digit Recognizer (MNIST)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+Ce projet implémente un réseau de neurones convolutif (**CNN**) sous TensorFlow/Keras pour la reconnaissance de chiffres manuscrits (de 0 à 9) à partir du jeu de données **Kaggle Digit Recognizer (MNIST)**.
 
-Résumé
-------
-Projet de reconnaissance de chiffres manuscrits basé sur le dataset MNIST. Le dépôt contient des notebooks (TensorFlow / Keras) montrant l'exploration des données, la construction et l'entraînement d'un CNN, ainsi que des cellules d'évaluation et d'inférence. Objectif : classifier les images 28×28 en 10 classes (0–9).
+---
 
-Contenu du dépôt
-----------------
-- `notebooks/` — notebooks Jupyter (exploration, entraînement, évaluation, démonstration)  
-- `src/` — (optionnel) scripts réutilisables (train.py, predict.py, utils.py)  
-- `models/` — modèles sauvegardés (ex : `models/best_model.h5`)  
-- `results/` — courbes d'entraînement, matrices de confusion, exemples de prédictions  
-- `data/` — (optionnel) données locales / exemples (MNIST est téléchargé automatiquement via Keras)  
-- `README.md` — ce fichier  
-- `LICENSE` — MIT (si présent)
+## 📌 Présentation du Projet
+* **Objectif** : Classification d'images multi-classes (10 classes : chiffres 0 à 9).
+* **Dataset** : Kaggle Digit Recognizer — 42 000 images d'entraînement en niveaux de gris de dimensions $28 \times 28$ pixels.
+* **Résultat Clé** : Précision supérieur à **99 %** (`val_accuracy`) sur le jeu de validation.
 
-Prérequis
----------
-- Python 3.8+ recommandé  
-- TensorFlow 2.x  
-- Bibliothèques usuelles : numpy, matplotlib, scikit-learn, pandas, jupyter, tqdm  
-(versions exactes à préciser dans `requirements.txt`)
+---
 
-Installation rapide
-------------------
-1. Cloner le dépôt :
-```bash
-git clone https://github.com/ayounimohamedaziz/digit-recognizer-mnist.git
-cd digit-recognizer-mnist
+## ⚙️ Traitement des Données & Pipeline
+
+1. **Reconstruction des Images** :
+   * Transformation du vecteur aplati de 784 pixels en matrice 3D : `(28, 28, 1)`.
+2. **Normalisation** :
+   * Conversion des valeurs de pixels de l'intervalle $[0, 255]$ vers $[0.0, 1.0]$.
+3. **Data Augmentation** :
+   * Application de légères rotations, zooms et décalages (width/height shift) pour améliorer la généralisation du modèle face à différentes écritures manuscrites.
+4. **Découpage des Données** :
+   * Séparation en jeux d'entraînement et de validation (ex. 90% Train / 10% Validation).
+
+---
+
+## 🧠 Architecture du Modèle
+
+```text
+Input (28x28x1)
+  │
+  ├── Conv2D (32 filtres, 3x3) + ReLU
+  ├── Conv2D (32 filtres, 3x3) + ReLU
+  ├── MaxPool2D (2x2) + Dropout (0.25)
+  │
+  ├── Conv2D (64 filtres, 3x3) + ReLU
+  ├── Conv2D (64 filtres, 3x3) + ReLU
+  ├── MaxPool2D (2x2) + Dropout (0.25)
+  │
+  ├── Flatten
+  ├── Dense (256 neurones) + ReLU + Dropout (0.5)
+  └── Output: Dense (10 neurones) + Softmax
